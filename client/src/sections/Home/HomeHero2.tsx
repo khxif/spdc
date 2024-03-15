@@ -4,18 +4,19 @@ import Link from "next/link";
 export default function HomeHero2() {
   return (
     <section className="py-10 flex items-center flex-col-reverse md:flex-row md:space-x-20 space-y-10 md:space-y-0">
-      <div className="w-full md:w-1/2 p-10">
+      <div className="w-full md:flex-1 p-10">
         <Image
           src="/home-hero.png"
           alt="hero"
-          width={100}
+          height={500}
+          width={500}
           quality={100}
-          height={100}
-          className="object-contain w-full h-full"
+          priority
+          className="object-cover w-full h-full"
         />
       </div>
 
-      <div className="w-full md:w-1/2 px-10 relative">
+      <div className="w-full md:flex-1 px-10 relative">
         <div
           className="px-4 py-8 rounded-2xl bg-white/5 w-full max-w-fit space-y-4 relative 
         backdrop-blur-3xl backdrop-brightness-50"
@@ -25,6 +26,7 @@ export default function HomeHero2() {
             alt="svg"
             width={10}
             height={10}
+            priority
             quality={100}
             className="w-8 h-8 object-contain"
           />

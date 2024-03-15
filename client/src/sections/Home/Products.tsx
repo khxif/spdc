@@ -18,7 +18,7 @@ export default function Products() {
       </div>
       <Separator className="my-4 bg-[#303030]" />
 
-      <div className="py-6 grid grid-cols-3 gap-x-2 gap-y-6 md:gap-12">
+      <div className="py-6 grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 md:gap-12">
         <Product />
         <Product />
         <Product />

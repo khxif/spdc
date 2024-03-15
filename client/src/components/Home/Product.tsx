@@ -12,7 +12,7 @@ export default function Product() {
       />
 
       <div className="flex flex-col justify-between h-full">
-        <h6 className="text-xs md:text-base">Spdc online group meet</h6>
+        <h6 className="text-sm md:text-base">Spdc online group meet</h6>
         <p className="text-xs">Free</p>
       </div>
     </div>
