@@ -8,12 +8,16 @@ export const metadata: Metadata = {
   title: "SPDC",
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const res = await fetch("http://localhost:8888/api/v1/softwares", {
+    cache: "no-store",
+  });
+  const softwares = await res.json();
   return (
-    <main className="max-w-7xl mx-auto px-2 md:px-0">
+    <main className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-0">
       <HomeHero1 />
       <HomeHero2 />
-      <Products />
+      <Products softwares={softwares} />
       <Contact />
     </main>
   );

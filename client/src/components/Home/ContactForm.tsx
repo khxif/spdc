@@ -1,5 +1,6 @@
 "use client";
 
+import { formSchema } from "@/utils/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -13,30 +14,32 @@ import {
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 
-const formSchema = z.object({
-  name: z
-    .string()
-    .min(2, {
-      message: "Name must contain 3 letters.",
-    })
-    .max(50),
-  email: z.string().email(),
-  message: z.string().min(4, {
-    message: "Enter a valid Message!",
-  }),
-});
-
 export default function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
+      message: "",
     },
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    try {
+      const res = await fetch("http://localhost:8888/api/v1/send-mail", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      form.reset();
+    }
   };
   return (
     <div className="pt-6 max-w-5xl mx-auto">
@@ -122,8 +125,8 @@ export default function ContactForm() {
             </div>
           </div>
           <button
-            className="px-20 py-2.5 rounded-full bg-gradient-to-r from-[#7CFEDE] 
-             to-[#fff] text-black max-w-fit font-semibold hover:brightness-75 mx-auto"
+            className="px-20 py-2.5 rounded-full bg-gradient-to-r to-[#7CFEDE] 
+             from-[#fff] text-black max-w-fit font-semibold hover:brightness-75 mx-auto"
           >
             Submit
           </button>

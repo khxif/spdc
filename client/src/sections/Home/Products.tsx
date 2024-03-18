@@ -1,29 +1,29 @@
+"use client";
+
+import CategoryTabs from "@/components/Home/CategoryTabs";
 import Product from "@/components/Home/Product";
 import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 
-export default function Products() {
+interface ProductsProps {
+  softwares: Software[];
+}
+
+export default function Products({ softwares }: ProductsProps) {
+  const [category, setCategory] = useState<Category>("software");
   return (
-    <section className="my-10 px-5 md:px-12 py-6 bg-[#1A1A1A]">
-      <div className="flex items-center justify-between w-full">
-        <h2 className="font-medium text-xl">Our Products</h2>
+    <section className="my-10 px-2 sm:px-4 md:px-12 py-6 bg-[#1A1A1A] w-full overflow-x-hidden">
+      <div className="flex flex-col space-y-5 md:flex-row items-center md:justify-between w-full">
+        <h2 className="font-medium text-lg md:text-xl">Our Products</h2>
 
-        <div>
-          <span
-            className="px-4 py-2 text-sm font-medium rounded-full text-black
-           bg-gradient-to-r from-white to-[#C1FFF0]"
-          >
-            Softwares
-          </span>
-        </div>
+        <CategoryTabs category={category} setCategory={setCategory} />
       </div>
       <Separator className="my-4 bg-[#303030]" />
 
       <div className="py-6 grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 md:gap-12">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {softwares && softwares?.map((software: Software) => (
+          <Product key={software?._id} software={software} category={category} />
+        ))}
       </div>
     </section>
   );

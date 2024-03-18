@@ -1,9 +1,5 @@
-import dynamic from "next/dynamic";
+import ContactForm from "@/components/Home/ContactForm";
 import Image from "next/image";
-
-const ContactForm = dynamic(() => import("@/components/Home/ContactForm"), {
-  ssr: false,
-});
 
 export default function Contact() {
   return (
