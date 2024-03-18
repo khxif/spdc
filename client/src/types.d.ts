@@ -1,7 +1,7 @@
 interface Software {
   _id: string;
   name: string;
-  category: "web" | "app" | "game";
+  category: Category[];
   imageUrl: string;
 }
 
