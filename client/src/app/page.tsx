@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const res = await fetch("http://localhost:8888/api/v1/softwares", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/softwares`, {
     cache: "no-store",
   });
   const softwares = await res.json();
