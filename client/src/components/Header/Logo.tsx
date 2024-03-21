@@ -4,9 +4,13 @@ import Link from "next/link";
 
 const leckerLiOne = Leckerli_One({ subsets: ["latin"], weight: ["400"] });
 
-export default function Logo() {
+interface LogoProps {
+  href: string;
+}
+
+export default function Logo({ href }: LogoProps) {
   return (
-    <Link href="/">
+    <Link href={href}>
       <h1 className={cn(leckerLiOne.className, "text-3xl")}>spdc</h1>
     </Link>
   );

@@ -12,7 +12,7 @@ export default function MobileSideBar() {
       </SheetTrigger>
       <SheetContent className="bg-white text-black flex flex-col space-y-6 p-4 m-0">
         <div className="items-start">
-          <Logo />
+          <Logo href="/" />
         </div>
         <div className="flex flex-col space-y-5">
           {links.map((link) => (
