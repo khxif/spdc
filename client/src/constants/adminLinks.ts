@@ -1,4 +1,4 @@
-import { BotMessageSquare, Wrench } from "lucide-react";
+import { BotMessageSquare, Users, Wrench } from "lucide-react";
 
 export const adminLinks = [
   {
@@ -12,5 +12,11 @@ export const adminLinks = [
     label: "Add Softwares",
     href: "/admin/add-softwares",
     icon: BotMessageSquare,
+  },
+  {
+    id: 3,
+    label: "Manage Users",
+    href: "/admin/users",
+    icon: Users,
   },
 ];

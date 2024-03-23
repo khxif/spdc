@@ -1,6 +1,7 @@
 import { LogOut } from "lucide-react";
 import Logo from "../Header/Logo";
 import AdminLinks from "./AdminLinks";
+import { Button } from "../ui/button";
 
 export default function AdminSidebar() {
   return (
@@ -12,13 +13,14 @@ export default function AdminSidebar() {
         <Logo href="/admin" />
         <AdminLinks />
       </div>
-      <span
-        className="text-center py-5 flex items-center justify-start w-full space-x-2 
-      font-semibold cursor-pointer"
+      <Button
+        variant="ghost"
+        className="text-center hover:bg-transparent hover:text-white py-5 flex items-center
+         justify-start w-full space-x-2 font-semibold cursor-pointer"
       >
         <LogOut />
         <p>Logout</p>
-      </span>
+      </Button>
     </aside>
   );
 }

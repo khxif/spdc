@@ -1,4 +1,4 @@
-import SoftwaresForm from "@/components/admin/SoftwaresForm";
+import SoftwaresForm from "@/components/admin/software/SoftwaresForm";
 
 export default function AddSoftwaresPage() {
   return (

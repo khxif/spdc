@@ -11,31 +11,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { softwareFormSchema } from "@/utils/softwareFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import ImageUpload from "../ImageUpload";
+import ImageUpload from "../../ImageUpload";
 import CategorySelect from "./CategorySelect";
 import PriceSelect from "./PriceSelect";
 
-const formSchema = z.object({
-  src: z.string().min(2, {
-    message: "Add your logo!",
-  }),
-  name: z.string().min(1, {
-    message: "Enter a valid name!",
-  }),
-  category: z.string().min(1, {
-    message: "Select a category!",
-  }),
-  price: z.string().min(1, {
-    message: "Select a Price!",
-  }),
-});
-
 export default function SoftwaresForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof softwareFormSchema>>({
+    resolver: zodResolver(softwareFormSchema),
     defaultValues: {
       src: "",
       name: "",
@@ -44,8 +30,13 @@ export default function SoftwaresForm() {
     },
   });
 
-  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+  const handleSubmit = async (values: z.infer<typeof softwareFormSchema>) => {
     console.log(values);
+    try {
+      form.reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="w-full px-4 sm:px-6 lg:px-24 py-5">
@@ -67,9 +58,7 @@ export default function SoftwaresForm() {
                     value={field.value}
                   />
                 </FormControl>
-                <FormDescription>
-                  Add the softwares logo.
-                </FormDescription>
+                <FormDescription>Add the softwares logo.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
