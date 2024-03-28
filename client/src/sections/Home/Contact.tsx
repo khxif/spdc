@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Contact() {
   return (
-    <section className="py-10">
+    <section className="py-10" id="#contact">
       <h1 className="text-2xl text-center flex items-center space-x-4 justify-center">
         <span>Contact Us</span>
         <Image

@@ -11,15 +11,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { softwareFormSchema } from "@/utils/softwareFormSchema";
+import { softwareFormSchema } from "@/formSchemas/softwareFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import ImageUpload from "../../ImageUpload";
+import ImageUpload from "../ImageUpload";
 import CategorySelect from "./CategorySelect";
 import PriceSelect from "./PriceSelect";
+import { toast } from "sonner";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 export default function SoftwaresForm() {
+  const cookie = getCookie("user");
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof softwareFormSchema>>({
     resolver: zodResolver(softwareFormSchema),
     defaultValues: {
@@ -31,11 +37,30 @@ export default function SoftwaresForm() {
   });
 
   const handleSubmit = async (values: z.infer<typeof softwareFormSchema>) => {
-    console.log(values);
     try {
+      console.log(values);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/softwares/add`,
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${cookie}`,
+          },
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) return toast.error(data.error || "Something went wrong");
+
+      toast.success(`Software added successfully!`);
       form.reset();
+      router.refresh();
     } catch (error) {
       console.log(error);
+      toast.error((error as Error).message || "Something went wrong");
     }
   };
   return (

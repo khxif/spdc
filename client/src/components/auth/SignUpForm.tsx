@@ -2,21 +2,27 @@
 
 import { Button } from "@/components/ui/button";
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signupFormSchema } from "@/utils/signupFormSchema";
+import { useUserStore } from "@/store/userStore";
+import { signupFormSchema } from "@/formSchemas/signupFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 export default function SignUpForm() {
+  const router = useRouter();
+  const setUser = useUserStore((state) => state.setUser);
+
   const form = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
@@ -28,7 +34,33 @@ export default function SignUpForm() {
   });
 
   const handleSubmit = async (values: z.infer<typeof signupFormSchema>) => {
-    console.log(values);
+    try {
+      console.log(values);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/auth/signup`,
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      console.log(res);
+      console.log(data);
+
+      if (!res.ok) return toast.error(data.error || "Something went wrong");
+
+      setUser(data);
+      toast.success(`Logged in as: <b>${data?.username}<b/>`);
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      toast.error((error as Error).message || "Something went wrong");
+    }
   };
   return (
     <div className="space-y-5">

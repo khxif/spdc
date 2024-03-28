@@ -1,4 +1,5 @@
 import {
+  AppWindow,
   Contact,
   Home,
   MonitorCheck,
@@ -21,20 +22,27 @@ export const links = [
   },
   {
     id: 3,
+    label: "Jobs",
+    href: "/jobs",
+    icon: AppWindow,
+  },
+  {
+    id: 4,
     label: "What we do?",
     href: "/about",
     icon: PackageSearch,
   },
   {
-    id: 4,
+    id: 5,
     label: "Our Products",
-    href: "/products",
+    href: "/#products",
     icon: MonitorCheck,
   },
   {
-    id: 5,
+    id: 6,
     label: "Contact Us",
-    href: "/contact",
+    href: "/#contact",
     icon: Contact,
   },
+  
 ];

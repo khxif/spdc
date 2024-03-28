@@ -2,7 +2,6 @@ import Contact from "@/sections/Home/Contact";
 import HomeHero1 from "@/sections/Home/HomeHero1";
 import HomeHero2 from "@/sections/Home/HomeHero2";
 import Products from "@/sections/Home/Products";
-// import { softwares } from "@/utils/softwares";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

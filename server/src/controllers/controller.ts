@@ -1,19 +1,5 @@
 import { Request, Response } from "express";
 import { transporter } from "../utils/transporter";
-import { Software } from "../models/SoftwareModel";
-
-export const getAllSoftwares = async (req: Request, res: Response) => {
-  try {
-    const softwares = await Software.find();
-
-    res.status(200).json(softwares);
-  } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .json({ error: (error as Error)?.message || "Internal server Error!" });
-  }
-};
 
 export const sendMail = async (req: Request, res: Response) => {
   try {

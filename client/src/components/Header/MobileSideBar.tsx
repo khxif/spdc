@@ -1,4 +1,4 @@
-import { links } from "@/constants/links";
+import { links } from "@/utils/links";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";

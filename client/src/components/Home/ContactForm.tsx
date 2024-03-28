@@ -1,6 +1,6 @@
 "use client";
 
-import { formSchema } from "@/utils/contactFormSchema";
+import { formSchema } from "@/formSchemas/contactFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -26,13 +26,16 @@ export default function ContactForm() {
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const res = await fetch("http://localhost:8888/api/v1/send-mail", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/send-mail`,
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await res.json();
       console.log(data);
     } catch (error) {

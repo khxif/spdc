@@ -1,6 +1,6 @@
 "use client";
 
-import { adminLinks } from "@/constants/adminLinks";
+import { adminLinks } from "@/utils/adminLinks";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

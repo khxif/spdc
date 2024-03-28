@@ -3,7 +3,10 @@ import Link from "next/link";
 
 export default function HomeHero1() {
   return (
-    <section className="py-10 flex flex-col items-center md:px-0 md:flex-row md:space-x-10 space-y-8 md:space-y-0">
+    <section
+      id="#hero1"
+      className="py-10 flex flex-col items-center md:px-0 md:flex-row md:space-x-10 space-y-8 md:space-y-0"
+    >
       <div
         className="flex flex-col space-y-4 w-full md:w-1/2 px-4 items-center justify-center
        md:items-start md:justify-start text-center md:text-left py-6"

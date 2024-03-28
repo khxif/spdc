@@ -7,15 +7,17 @@ interface ImageUploadProps {
   value: string;
   onChange: (src: string) => void;
   disabled?: boolean;
+  className?: string
 }
 
 export default function ImageUpload({
   onChange,
   value,
   disabled,
+  className
 }: ImageUploadProps) {
   return (
-    <div className="mx-auto">
+    <div className="mx-auto w-full flex items-center justify-center">
       <CldUploadButton
         options={{
           maxFiles: 1,

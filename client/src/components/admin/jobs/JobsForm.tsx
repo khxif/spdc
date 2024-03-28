@@ -11,41 +11,57 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { jobFormSchema } from "@/formSchemas/jobFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import JobTypeSelect from "./JobTypeSelect";
 import WorkModeSelect from "./WorkModeSelect";
-import { Textarea } from "@/components/ui/textarea";
-
-const formSchema = z.object({
-  title: z.string().min(4, {
-    message: "Enter a valid job Title!",
-  }),
-  type: z.string().min(1, {
-    message: "Select a job Type!",
-  }),
-  workMode: z.string().min(1, {
-    message: "Select a work mode!",
-  }),
-  description: z.string().min(8, {
-    message: "Enter a valid description!",
-  }),
-});
+import { getCookie } from "cookies-next";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function JobsForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const cookie = getCookie("user");
+  const router = useRouter();
+
+  const form = useForm<z.infer<typeof jobFormSchema>>({
+    resolver: zodResolver(jobFormSchema),
     defaultValues: {
       title: "",
-      type: "",
+      jobType: "",
       workMode: "",
       description: "",
     },
   });
 
-  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const handleSubmit = async (values: z.infer<typeof jobFormSchema>) => {
+    try {
+      console.log(values);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/jobs/add`,
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${cookie}`,
+          },
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      if (!res.ok) return toast.error(data.error || "Something went wrong");
+
+      toast.success(`Job added successfully!`);
+      form.reset();
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+      toast.error((error as Error).message || "Something went wrong");
+    }
   };
   return (
     <div className="w-full px-4 sm:px-6 lg:px-24 py-5">
@@ -75,7 +91,7 @@ export default function JobsForm() {
 
             <FormField
               control={form.control}
-              name="type"
+              name="jobType"
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormLabel>Job Type</FormLabel>
@@ -117,7 +133,11 @@ export default function JobsForm() {
               <FormItem className="w-full">
                 <FormLabel>Job Description</FormLabel>
                 <FormControl>
-                  <Textarea rows={4} placeholder="Job Description....." />
+                  <Textarea
+                    rows={4}
+                    placeholder="Job Description....."
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>Enter the Job Description.</FormDescription>
                 <FormMessage />

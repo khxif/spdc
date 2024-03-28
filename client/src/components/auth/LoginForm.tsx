@@ -10,13 +10,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { loginFormSchema } from "@/utils/loginFormSchema";
+import { useUserStore } from "@/store/userStore";
+import { loginFormSchema } from "@/formSchemas/loginFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 export default function LoginForm() {
+  const router = useRouter();
+  const setUser = useUserStore((state) => state.setUser);
+
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -26,7 +32,35 @@ export default function LoginForm() {
   });
 
   const handleSubmit = async (values: z.infer<typeof loginFormSchema>) => {
-    console.log(values);
+    try {
+      console.log(values);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/auth/login`,
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      console.log(res);
+      console.log(data);
+
+      if (!res.ok) return toast.error(data.error || "Something went wrong");
+
+      setUser(data);
+      toast.success(`Logged in as: <b>${data?.username}<b/>`);
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      toast.error((error as Error).message || "Something went wrong");
+    } finally {
+      form.reset();
+    }
   };
   return (
     <div className="space-y-5">

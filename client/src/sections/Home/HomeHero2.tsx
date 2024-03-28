@@ -3,7 +3,10 @@ import Link from "next/link";
 
 export default function HomeHero2() {
   return (
-    <section className="py-10 flex items-center flex-col-reverse md:flex-row md:space-x-20 space-y-10 md:space-y-0">
+    <section
+      id="#hero2"
+      className="py-10 flex items-center flex-col-reverse md:flex-row md:space-x-20 space-y-10 md:space-y-0"
+    >
       <div className="w-full md:flex-1 p-10">
         <Image
           src="/home-hero.png"

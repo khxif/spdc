@@ -1,21 +1,30 @@
 import mongoose from "mongoose";
 
-const softwareSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+const softwareSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: [String],
+      enum: ["app", "web", "game", "software"],
+      required: true,
+    },
+    src: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: String,
+      required: true,
+      enum: ["paid", "free"],
+    },
   },
-  category: {
-    type: [String],
-    enum: ["app", "web", "game",'software'],
-    required: true,
-  },
-  imageUrl: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
-const Software = mongoose.model("Software", softwareSchema);
-
-export { Software };
+export const Software =
+  mongoose.models.Software || mongoose.model("Software", softwareSchema);
