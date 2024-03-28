@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 8888;
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://spdc.vercel.app"],
+    origin: ["http://localhost:3000", "https://spdc.vercel.app"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
