@@ -10,7 +10,7 @@ export default function AdminPage() {
       <main className="flex flex-col items-center justify-center w-full h-full space-y-12 px-4 sm:px-6 lg:px-0">
         <h1 className="text-2xl font-bold">Welcome, SPDC admin!</h1>
 
-        <div className="space-y-6 w-full px-6 lg:px-0 max-w-4xl flex flex-col pb-20">
+        <div className="space-y-6 w-full max-w-4xl flex flex-col pb-20">
           {adminLinks.map((link) => (
             <Link href={link.href} key={link.id}>
               <span

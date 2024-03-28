@@ -71,7 +71,7 @@ export default function JobsForm() {
           className="space-y-8 w-full"
         >
           <div
-            className="flex flex-col lg:flex-row items-center space-x-4 sm:space-x-6 lg:space-x-8
+            className="flex flex-col lg:flex-row items-center space-x-0 sm:space-x-6 lg:space-x-8
            space-y-6 lg:space-y-0"
           >
             <FormField

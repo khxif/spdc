@@ -91,7 +91,7 @@ export default function SoftwaresForm() {
 
           <div
             className="flex flex-col lg:flex-row items-center justify-between w-full 
-          space-x-4 sm:space-x-6 lg:space-x-8 space-y-6 lg:space-y-0"
+          space-x-0 sm:space-x-6 lg:space-x-8 space-y-6 lg:space-y-0"
           >
             <FormField
               control={form.control}
