@@ -21,7 +21,7 @@ export default function HomeHero1() {
           className="px-8 py-2 rounded-full bg-gradient-to-r from-[#7CFEDE] 
         to-[#fff] text-black max-w-fit font-bold hover:brightness-75"
         >
-          <Link href="/">Job openings</Link>
+          <Link href="/jobs">Job openings</Link>
         </button>
       </div>
 
