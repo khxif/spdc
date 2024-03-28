@@ -7,9 +7,22 @@ export const getAllUsers = async (req: Request, res: Response) => {
     const users = await User.find({ _id: { $ne: user._id } }).select(
       "-password"
     );
-    console.log(users);
+    // console.log(users);
 
     res.status(200).json(users);
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ error: (error as Error)?.message || "Internal server Error!" });
+  }
+};
+
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const user = await User.deleteOne({ _id: id });
+    res.status(200).json({ message: "done" });
   } catch (error) {
     console.log(error);
     res

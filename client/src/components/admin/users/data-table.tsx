@@ -1,22 +1,24 @@
 "use client";
 
 import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import { Trash2 } from "lucide-react";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -32,9 +34,28 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-  const handleDelete = async() => {
-    
-  }
+  const cookie = getCookie("user");
+  const router = useRouter();
+
+  const handleDelete = async (id: string) => {
+    try {
+      console.log(id);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/user/${id}`,
+        {
+          method: "DELETE",
+          cache: "no-store",
+          headers: {
+            Authorization: `${cookie}`,
+          },
+        }
+      );
+      const data = await res.json();
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="rounded-md border border-white/50">
       <Table className="border-white/50">
@@ -75,7 +96,7 @@ export function DataTable<TData, TValue>({
                     size="sm"
                     className="text-white flex items-center justify-center bg-transparent
                      hover:bg-red-600"
-                     onClick={() => handleDelete()}
+                    onClick={() => handleDelete(((row?.original as User)._id))}
                   >
                     <Trash2 className="size-5 my-auto" />
                   </Button>

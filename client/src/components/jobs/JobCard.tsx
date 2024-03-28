@@ -2,9 +2,11 @@
 
 import { Briefcase, MapPin } from "lucide-react";
 import { Button } from "../ui/button";
-import { useModalStore } from "@/store/useModalStore";
+import { useModalStore } from "@/store/modalStore";
+import { useSelectedJobStore } from "@/store/selectedJob";
 
 export default function JobCard({ job }: { job: Job }) {
+  const setSelectedJob = useSelectedJobStore((state) => state.setSelectedJob);
   const setJobModalOpen = useModalStore((state) => state.setJobModalOpen);
   return (
     <div
@@ -30,7 +32,10 @@ export default function JobCard({ job }: { job: Job }) {
         size="lg"
         variant="secondary"
         className="px-10 font-semibold"
-        onClick={() => setJobModalOpen(true)}
+        onClick={() => {
+          setJobModalOpen(true);
+          setSelectedJob(job);
+        }}
       >
         Apply
       </Button>

@@ -13,15 +13,17 @@ import { Input } from "@/components/ui/input";
 import { jobApplyFormSchema } from "@/formSchemas/jobApplyFormSchema";
 import { UploadDropzone } from "@/utils/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Textarea } from "../ui/textarea";
-import { useState } from "react";
-import Image from "next/image";
+import { useSelectedJobStore } from "@/store/selectedJob";
 
 export default function JobApplyForm() {
   const [resumeUrl, setResumeUrl] = useState<string>("");
+  const selectedJob = useSelectedJobStore((state) => state.selectedJob);
 
   const form = useForm<z.infer<typeof jobApplyFormSchema>>({
     resolver: zodResolver(jobApplyFormSchema),
@@ -35,7 +37,31 @@ export default function JobApplyForm() {
   });
 
   const handleSubmit = async (values: z.infer<typeof jobApplyFormSchema>) => {
-    console.log(values);
+    try {
+      console.log(values);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}/api/v1/jobs/apply/${selectedJob?._id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      const data = await res.json();
+      console.log(res);
+      console.log(data);
+
+      if (!res.ok) return toast.error(data.error || "Something went wrong");
+
+      toast.success(`Application sent!`);
+    } catch (error) {
+      console.log(error);
+      toast.error((error as Error).message || "Something went wrong");
+    }
   };
   return (
     <div className="pt-4">

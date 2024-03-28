@@ -82,7 +82,7 @@ export default function ServicesPage() {
             <span className="bg-[#7CFEDE] rounded-full p-2 text-black">
               <Phone className="w-5 h-5" />
             </span>
-            <p className="font-light text-sm md:text-base text-lg">Make a call</p>
+            <p className="font-light text-sm sm:text-base lg:text-lg">Make a call</p>
           </div>
         </div>
       </section>

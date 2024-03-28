@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useModalStore } from "@/store/useModalStore";
+import { useModalStore } from "@/store/modalStore";
 import JobApplyForm from "./JobApplyForm";
 
 export default function JobApplyModal() {

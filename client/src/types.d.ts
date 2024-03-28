@@ -39,3 +39,8 @@ interface ModalStore {
   userDeleteModalOpen: boolean;
   setUserDeleteModalOpen: (open: boolean) => void;
 }
+
+interface SelectedJobStore {
+  selectedJob: Job | null;
+  setSelectedJob: (selectedJob: Job) => void;
+}
