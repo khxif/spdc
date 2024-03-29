@@ -60,7 +60,7 @@ export const login = async (req: Request, res: Response) => {
     const token = createToken(user._id, user.username, user.email);
     console.log(token);
 
-    res.cookie("user", token, { maxAge: 30 * 24 * 60 * 60, path: "/" });
+    res.cookie("user", token, cookieOptions);
     // res.setHeader("Set-Cookie", `user=${token}; Path=/`);
 
     res.status(200).json({
