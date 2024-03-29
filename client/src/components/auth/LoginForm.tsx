@@ -54,8 +54,8 @@ export default function LoginForm() {
 
       setUser(data);
       toast.success(`Logged in as: <b>${data?.username}<b/>`);
-      // router.push("/");
-      // router.refresh();
+      router.push("/");
+      router.refresh();
     } catch (error) {
       console.log(error);
       toast.error((error as Error).message || "Something went wrong");
