@@ -11,7 +11,7 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const cookie = getCookie("user");
-    console.log(cookie);
+    // console.log(cookie);
 
     if (!cookie) setUser(null);
   }, []);
