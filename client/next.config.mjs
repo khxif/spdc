@@ -7,7 +7,8 @@ const nextConfig = {
         {
             hostname: 'utfs.io'
         }]
-    }
+    },
+    output: 'standalone',
 };
 
 export default nextConfig;
