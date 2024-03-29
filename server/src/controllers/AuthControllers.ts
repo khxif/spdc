@@ -58,8 +58,7 @@ export const login = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Invalid Password" });
 
     const token = createToken(user._id, user.username, user.email);
-    // res.cookie("user", token, cookieOptions);
-    res.setHeader("Set-Cookie", `user=${token}; Path=/`);
+    res.cookie("user", token, cookieOptions);
 
     res.status(200).json({
       _id: user?._id,
