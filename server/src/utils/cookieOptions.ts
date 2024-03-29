@@ -8,5 +8,4 @@ export const cookieOptions = {
   expires: expiryDate,
   domain:
     process.env.NODE_ENV === "production" ? "spdc-api.vercel.app" : "localhost",
-  httpOnly: true,
 };

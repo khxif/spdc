@@ -1,23 +1,20 @@
 "use client";
 
 import { useUserStore } from "@/store/userStore";
-import { CookieValueTypes } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
+import { getCookie } from "cookies-next";
 
-export default function ProtectedRoute({
-  children,
-  cookie,
-}: {
-  children: ReactNode;
-  cookie: CookieValueTypes;
-}) {
+export default function ProtectedRoute({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [user, setUser] = useUserStore((state) => [state.user, state.setUser]);
 
   useEffect(() => {
+    const cookie = getCookie("user");
+    console.log(cookie);
+
     if (!cookie) setUser(null);
-  }, [cookie]);
+  }, []);
 
   useEffect(() => {
     if (!user) router.push("/login");

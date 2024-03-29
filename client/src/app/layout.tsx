@@ -5,8 +5,6 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import ProtectedRoute from "@/providers/ProtectedRoute";
 import Hydrations from "@/providers/Hydration";
-import { getCookie } from "cookies-next";
-import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +18,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookie = getCookie("user", { cookies });
   return (
     <html lang="en">
       <body
         className={cn(inter.className, "bg-black text-white h-screen w-full")}
       >
         <Hydrations>
-          <ProtectedRoute cookie={cookie}>
+          <ProtectedRoute>
             {children}
             <Toaster
               richColors
