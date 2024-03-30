@@ -32,6 +32,11 @@ interface UserStore {
   setUser: (user: User | null) => void;
 }
 
+interface TokenStore {
+  token: string | null;
+  setToken: (user: string | null) => void;
+}
+
 interface ModalStore {
   jobModalOpen: boolean;
   setJobModalOpen: (open: boolean) => void;

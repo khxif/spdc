@@ -4,7 +4,7 @@ import { verifyAdmin } from "../middlewares/verifyAdmin";
 
 const router = Router();
 
-router.get("/all", verifyAdmin, getAllUsers);
-router.delete('/:id',verifyAdmin,deleteUser)
+router.get("/all", getAllUsers);
+router.delete("/:id", verifyAdmin, deleteUser);
 
 export default router;

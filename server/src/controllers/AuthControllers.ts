@@ -1,5 +1,6 @@
 import { compare } from "bcrypt";
 import { Request, Response } from "express";
+import { verify } from "jsonwebtoken";
 import { User } from "../models/UserModel";
 import { cookieOptions } from "../utils/cookieOptions";
 import { createToken } from "../utils/createToken";
@@ -26,7 +27,12 @@ export const signup = async (req: Request, res: Response) => {
       password: hashedPassword,
     }).save();
 
-    const token = createToken(newUser?._id, newUser?.username, newUser?.email);
+    const token = createToken(
+      newUser?._id,
+      newUser?.username,
+      newUser?.email,
+      newUser?.role
+    );
     res.cookie("user", token, cookieOptions);
 
     res.status(200).json({
@@ -57,18 +63,13 @@ export const login = async (req: Request, res: Response) => {
     if (!validPassword)
       return res.status(400).json({ error: "Invalid Password" });
 
-    const token = createToken(user._id, user.username, user.email);
+    const token = createToken(user._id, user.username, user.email, user.role);
     console.log(token);
 
-    res.cookie("user", token, cookieOptions);
+    // res.cookie("user", token, cookieOptions);
     // res.setHeader("Set-Cookie", `user=${token}; Path=/`);
 
-    res.status(200).json({
-      _id: user?._id,
-      username: user?.username,
-      email: user?.email,
-      role: user?.role,
-    });
+    res.status(200).json(token);
   } catch (error) {
     console.log("Login: " + error);
     res
@@ -83,6 +84,27 @@ export const logout = async (req: Request, res: Response) => {
     res.json({ message: "Logout success" });
   } catch (error) {
     console.log("Logout: " + error);
+    res
+      .status(500)
+      .json({ error: (error as Error)?.message || "Internal server Error!" });
+  }
+};
+
+export const verifyToken = async (req: Request, res: Response) => {
+  try {
+    const token = req.headers.authorization;
+    console.log("token" + token);
+
+    if (!token) return res.status(401).json({ error: "Invalid token" });
+
+    const data: any = verify(token, process.env.JWT_SECRET!);
+
+    const user = await User.findOne({ email: data?.email }).select("-password");
+    if (!user) return res.status(401).json({ error: "User not found" });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.log("Verify Token: " + error);
     res
       .status(500)
       .json({ error: (error as Error)?.message || "Internal server Error!" });

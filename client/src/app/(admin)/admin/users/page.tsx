@@ -8,11 +8,10 @@ export default async function UsersPage() {
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user/all`, {
     cache: "no-store",
-    headers: {
-      Authorization: `${cookie}`,
-    },
   });
   const data = await res.json();
+  console.log(data);
+  
   return (
     <main className="w-full px-5 py-8">
       <DataTable columns={columns} data={data} />

@@ -3,10 +3,7 @@ import { User } from "../models/UserModel";
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
-    const user = res.locals.user;
-    const users = await User.find({ _id: { $ne: user._id } }).select(
-      "-password"
-    );
+    const users = await User.find().select("-password");
     // console.log(users);
 
     res.status(200).json(users);

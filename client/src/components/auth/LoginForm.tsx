@@ -18,10 +18,13 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { jwtDecode } from "jwt-decode";
+import { useTokenStore } from "@/store/tokenStore";
 
 export default function LoginForm() {
   const router = useRouter();
   const setUser = useUserStore((state) => state.setUser);
+  const setToken = useTokenStore((state) => state.setToken);
 
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
@@ -52,8 +55,18 @@ export default function LoginForm() {
 
       if (!res.ok) return toast.error(data.error || "Something went wrong");
 
-      setUser(data);
-      toast.success(`Logged in as: <b>${data?.username}<b/>`);
+      // setUser(data);
+      setToken(data);
+      const user: User = jwtDecode(data);
+      console.log(user);
+      setUser({
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      } as User);
+
+      toast.success(`Logged in as: <b>${user?.username}<b/>`);
       router.push("/");
       router.refresh();
     } catch (error) {
