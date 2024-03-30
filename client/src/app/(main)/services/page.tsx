@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Services",
-  description:"Check out our services"
+  description: "Check out our services",
 };
 
 export default function ServicesPage() {
@@ -79,12 +79,18 @@ export default function ServicesPage() {
             and how we can help you achieve your goals.
           </p>
 
-          <div className="flex items-center space-x-2.5 cursor-pointer">
+          <a
+            href="https://wa.me/7306932563"
+            target="_blank"
+            className="flex items-center space-x-2.5 cursor-pointer"
+          >
             <span className="bg-[#7CFEDE] rounded-full p-2 text-black">
               <Phone className="w-5 h-5" />
             </span>
-            <p className="font-light text-sm sm:text-base lg:text-lg">Make a call</p>
-          </div>
+            <p className="font-light text-sm sm:text-base lg:text-lg">
+              Make a call
+            </p>
+          </a>
         </div>
       </section>
     </main>

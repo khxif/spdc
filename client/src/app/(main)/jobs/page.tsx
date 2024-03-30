@@ -20,6 +20,12 @@ export default async function JobsPage() {
             <JobCard job={job} />
           </div>
         ))}
+      {!jobs ||
+        (jobs.length === 0 && (
+          <p className="text-center pt-5 font-semibold text-lg">
+            No jobs posted!
+          </p>
+        ))}
     </main>
   );
 }

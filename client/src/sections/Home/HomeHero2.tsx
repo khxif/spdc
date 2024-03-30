@@ -13,6 +13,7 @@ export default function HomeHero2() {
           alt="hero"
           height={500}
           width={500}
+          draggable={false}
           quality={100}
           priority
           className="object-cover w-full h-full"

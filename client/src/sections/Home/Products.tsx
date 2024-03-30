@@ -33,6 +33,12 @@ export default function Products({ softwares }: ProductsProps) {
             />
           ))}
       </div>
+      {!softwares ||
+        (softwares.length === 0 && (
+          <p className="text-center font-semibold">
+            No softwares added!
+          </p>
+        ))}
     </section>
   );
 }
