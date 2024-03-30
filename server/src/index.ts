@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["https://spdc.vercel.app", "http://localhost:3000","https://spdc.in"],
+    origin: ["https://spdc.vercel.app", "http://localhost:3000","https://www.spdc.in"],
     // process.env.NODE_ENV === "PRODUCTION"
     //   ? "https://spdc.vercel.app"
     //   : "http://localhost:3000",
