@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 
 const JobsForm = dynamic(() => import("@/components/admin/jobs/JobsForm"), {
   ssr: false,
-  loading:() => <>Loading....</>
 });
 
 export default function AddJobsPage() {

@@ -29,7 +29,7 @@ export const links = [
   {
     id: 4,
     label: "What we do?",
-    href: "/about",
+    href: "/#hero2",
     icon: PackageSearch,
   },
   {

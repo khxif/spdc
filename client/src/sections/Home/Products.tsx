@@ -13,7 +13,7 @@ export default function Products({ softwares }: ProductsProps) {
   const [category, setCategory] = useState<Category>("software");
   return (
     <section
-      id="#products"
+      id="products"
       className="my-10 px-2 sm:px-4 md:px-12 py-6 bg-[#1A1A1A] w-full overflow-x-hidden"
     >
       <div className="flex flex-col space-y-5 md:flex-row items-center md:justify-between w-full">

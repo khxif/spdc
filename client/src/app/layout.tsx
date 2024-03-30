@@ -1,15 +1,18 @@
 import { cn } from "@/lib/utils";
+import Hydrations from "@/providers/Hydration";
+import ProtectedRoute from "@/providers/ProtectedRoute";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
-import ProtectedRoute from "@/providers/ProtectedRoute";
-import Hydrations from "@/providers/Hydration";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SPDC",
+  title: {
+    default: "SPDC",
+    template: "SPDC - %s",
+  },
   description: "Official Website of SPDC!",
 };
 
@@ -20,6 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       <body
         className={cn(inter.className, "bg-black text-white h-screen w-full")}
       >

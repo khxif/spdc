@@ -10,7 +10,7 @@ export default function Product({ software, category }: ProductProps) {
   return (
     <div className="flex items-center space-x-2">
       <Image
-        src={software?.src}
+        src={software?.src || ""}
         alt="product"
         width={30}
         quality={90}

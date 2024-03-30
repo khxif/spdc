@@ -18,10 +18,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "PRODUCTION"
-        ? "https://spdc.vercel.app"
-        : "http://localhost:3000",
+    origin: ["https://spdc.vercel.app", "http://localhost:3000"],
+    // process.env.NODE_ENV === "PRODUCTION"
+    //   ? "https://spdc.vercel.app"
+    //   : "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,

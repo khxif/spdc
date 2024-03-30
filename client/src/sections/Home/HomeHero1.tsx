@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function HomeHero1() {
   return (
     <section
-      id="#hero1"
+      id="hero1"
       className="py-10 flex flex-col items-center md:px-0 md:flex-row md:space-x-10 space-y-8 md:space-y-0"
     >
       <div

@@ -20,10 +20,12 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { Textarea } from "../ui/textarea";
 import { useSelectedJobStore } from "@/store/selectedJob";
+import { useModalStore } from "@/store/modalStore";
 
 export default function JobApplyForm() {
   const [resumeUrl, setResumeUrl] = useState<string>("");
   const selectedJob = useSelectedJobStore((state) => state.selectedJob);
+  const setJobModalOpen = useModalStore((state) => state.setJobModalOpen);
 
   const form = useForm<z.infer<typeof jobApplyFormSchema>>({
     resolver: zodResolver(jobApplyFormSchema),
@@ -58,6 +60,8 @@ export default function JobApplyForm() {
       if (!res.ok) return toast.error(data.error || "Something went wrong");
 
       toast.success(`Application sent!`);
+      form.reset();
+      setJobModalOpen(false)
     } catch (error) {
       console.log(error);
       toast.error((error as Error).message || "Something went wrong");

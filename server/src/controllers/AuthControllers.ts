@@ -84,7 +84,7 @@ export const logout = async (req: Request, res: Response) => {
 export const verifyToken = async (req: Request, res: Response) => {
   try {
     const token = req.headers.authorization;
-    console.log("token" + token);
+    // console.log("token" + token);
 
     if (!token) return res.status(401).json({ error: "Invalid token" });
 

@@ -1,4 +1,12 @@
-import SoftwaresForm from "@/components/admin/software/SoftwaresForm";
+import Loading from "@/components/ui/loading";
+import dynamic from "next/dynamic";
+
+const SoftwaresForm = dynamic(
+  () => import("@/components/admin/software/SoftwaresForm"),
+  {
+    ssr: false,
+  }
+);
 
 export default function AddSoftwaresPage() {
   return (
