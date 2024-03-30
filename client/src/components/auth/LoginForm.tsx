@@ -50,12 +50,8 @@ export default function LoginForm() {
         }
       );
       const data = await res.json();
-      console.log(res);
-      console.log(data);
-
       if (!res.ok) return toast.error(data.error || "Something went wrong");
 
-      // setUser(data);
       setToken(data);
       const user: User = jwtDecode(data);
       console.log(user);

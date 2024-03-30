@@ -10,9 +10,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useUserStore } from "@/store/userStore";
 import { signupFormSchema } from "@/formSchemas/signupFormSchema";
+import { useTokenStore } from "@/store/tokenStore";
+import { useUserStore } from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -22,6 +24,7 @@ import { z } from "zod";
 export default function SignUpForm() {
   const router = useRouter();
   const setUser = useUserStore((state) => state.setUser);
+  const setToken = useTokenStore((state) => state.setToken);
 
   const form = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
@@ -49,12 +52,18 @@ export default function SignUpForm() {
         }
       );
       const data = await res.json();
-      console.log(res);
-      console.log(data);
-
       if (!res.ok) return toast.error(data.error || "Something went wrong");
 
-      setUser(data);
+      setToken(data);
+      const user: User = jwtDecode(data);
+      console.log(user);
+      setUser({
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      } as User);
+
       toast.success(`Logged in as: <b>${data?.username}<b/>`);
       router.push("/");
       router.refresh();

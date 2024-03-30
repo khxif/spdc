@@ -4,9 +4,11 @@ import { LogOut } from "lucide-react";
 import { Button } from "../ui/button";
 import { useUserStore } from "@/store/userStore";
 import { toast } from "sonner";
+import { useTokenStore } from "@/store/tokenStore";
 
 export default function LogoutButton() {
   const setUser = useUserStore((state) => state.setUser);
+  const setToken = useTokenStore((state) => state.setToken);
 
   const handleLogout = async () => {
     const res = await fetch(
@@ -20,6 +22,7 @@ export default function LogoutButton() {
     if (!res.ok) return toast.error(data.error || "Something went wrong");
 
     setUser(null);
+    setToken(null);
     toast.success(`Logged out`);
   };
   return (

@@ -16,8 +16,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useTokenStore } from "@/store/tokenStore";
 import { Trash2 } from "lucide-react";
-import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
@@ -34,7 +34,7 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
-  const cookie = getCookie("user");
+  const token = useTokenStore((state) => state.token);
   const router = useRouter();
 
   const handleDelete = async (id: string) => {
@@ -46,7 +46,7 @@ export function DataTable<TData, TValue>({
           method: "DELETE",
           cache: "no-store",
           headers: {
-            Authorization: `${cookie}`,
+            Authorization: `${token}`,
           },
         }
       );
@@ -96,7 +96,7 @@ export function DataTable<TData, TValue>({
                     size="sm"
                     className="text-white flex items-center justify-center bg-transparent
                      hover:bg-red-600"
-                    onClick={() => handleDelete(((row?.original as User)._id))}
+                    onClick={() => handleDelete((row?.original as User)._id)}
                   >
                     <Trash2 className="size-5 my-auto" />
                   </Button>

@@ -12,18 +12,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { softwareFormSchema } from "@/formSchemas/softwareFormSchema";
+import { useTokenStore } from "@/store/tokenStore";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 import ImageUpload from "../ImageUpload";
 import CategorySelect from "./CategorySelect";
 import PriceSelect from "./PriceSelect";
-import { toast } from "sonner";
-import { getCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
 
 export default function SoftwaresForm() {
-  const cookie = getCookie("user");
+  const token = useTokenStore((state) => state.token);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof softwareFormSchema>>({
@@ -47,7 +47,7 @@ export default function SoftwaresForm() {
           body: JSON.stringify(values),
           headers: {
             "Content-Type": "application/json",
-            Authorization: `${cookie}`,
+            Authorization: `${token}`,
           },
           credentials: "include",
         }

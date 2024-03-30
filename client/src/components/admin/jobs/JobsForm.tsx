@@ -21,9 +21,10 @@ import WorkModeSelect from "./WorkModeSelect";
 import { getCookie } from "cookies-next";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useTokenStore } from "@/store/tokenStore";
 
 export default function JobsForm() {
-  const cookie = getCookie("user");
+  const token = useTokenStore((state) => state.token)
   const router = useRouter();
 
   const form = useForm<z.infer<typeof jobFormSchema>>({
@@ -47,7 +48,7 @@ export default function JobsForm() {
           body: JSON.stringify(values),
           headers: {
             "Content-Type": "application/json",
-            Authorization: `${cookie}`,
+            Authorization: `${token}`,
           },
           credentials: "include",
         }
