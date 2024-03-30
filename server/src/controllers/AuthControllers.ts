@@ -33,14 +33,8 @@ export const signup = async (req: Request, res: Response) => {
       newUser?.email,
       newUser?.role
     );
-    res.cookie("user", token, cookieOptions);
 
-    res.status(200).json({
-      _id: newUser?._id,
-      username: newUser?.username,
-      email: newUser?.email,
-      role: newUser?.role,
-    });
+    res.status(200).json(token);
   } catch (error) {
     console.log("signup: " + error);
     res
@@ -64,10 +58,7 @@ export const login = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Invalid Password" });
 
     const token = createToken(user._id, user.username, user.email, user.role);
-    console.log(token);
-
-    // res.cookie("user", token, cookieOptions);
-    // res.setHeader("Set-Cookie", `user=${token}; Path=/`);
+    // console.log(token);
 
     res.status(200).json(token);
   } catch (error) {

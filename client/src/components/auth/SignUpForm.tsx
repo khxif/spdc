@@ -64,7 +64,7 @@ export default function SignUpForm() {
         role: user.role,
       } as User);
 
-      toast.success(`Logged in as: <b>${data?.username}<b/>`);
+      toast.success(`Logged in as: <b>${user?.username}<b/>`);
       router.push("/");
       router.refresh();
     } catch (error) {
