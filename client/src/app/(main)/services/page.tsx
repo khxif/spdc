@@ -16,7 +16,7 @@ export default function ServicesPage() {
 
         <div className="px-2 md:px-8 py-8 space-y-12">
           <p className="font-light text-sm md:text-base text-white/80 leading-7">
-            At <span className="font-semibold text-white">SPDC</span>, we
+            At <span className="font-semibold text-white">DevDopz</span>, we
             specialize in creating dynamic and innovative solutions tailored to
             meet your digital needs. Whether you&apos;re looking to establish a
             powerful online presence, develop cutting-edge software, or create
