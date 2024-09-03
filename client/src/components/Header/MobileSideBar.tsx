@@ -1,7 +1,7 @@
 import { links } from "@/utils/links";
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../ui/sheet";
 import Logo from "./Logo";
 
 export default function MobileSideBar() {
@@ -16,17 +16,18 @@ export default function MobileSideBar() {
         </div>
         <div className="flex flex-col space-y-5">
           {links.map((link) => (
-            <Link
-              href={link.href}
-              key={link.id}
-              className="w-full py-4 px-2 hover:bg-zinc-400/40 rounded-md transition-all 
+            <SheetClose asChild key={link.id}>
+              <Link
+                href={link.href}
+                className="w-full py-4 px-2 hover:bg-zinc-400/40 rounded-md transition-all 
               duration-200 ease-linear"
-            >
-              <span className="flex items-center space-x-3">
-                <link.icon className="w-5 h-5" />
-                <p>{link.label}</p>
-              </span>
-            </Link>
+              >
+                <span className="flex items-center space-x-3">
+                  <link.icon className="w-5 h-5" />
+                  <p>{link.label}</p>
+                </span>
+              </Link>
+            </SheetClose>
           ))}
         </div>
       </SheetContent>

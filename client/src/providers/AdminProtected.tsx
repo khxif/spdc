@@ -9,6 +9,7 @@ export default function AdminProtected({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (user?.role !== "admin") redirect("/");
+    console.log(user)
   }, [user]);
   return <>{children}</>;
 }
