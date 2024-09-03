@@ -1,26 +1,16 @@
 "use client";
 
-import { LogOut } from "lucide-react";
-import { Button } from "../ui/button";
-import { useUserStore } from "@/store/userStore";
-import { toast } from "sonner";
 import { useTokenStore } from "@/store/tokenStore";
+import { useUserStore } from "@/store/userStore";
+import { LogOut } from "lucide-react";
+import { toast } from "sonner";
+import { Button } from "../ui/button";
 
 export default function LogoutButton() {
   const setUser = useUserStore((state) => state.setUser);
   const setToken = useTokenStore((state) => state.setToken);
 
-  const handleLogout = async () => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/v1/auth/logout`,
-      {
-        credentials: "include",
-      }
-    );
-    const data = await res.json();
-    console.log(data);
-    if (!res.ok) return toast.error(data.error || "Something went wrong");
-
+  const handleLogout = () => {
     setUser(null);
     setToken(null);
     toast.success(`Logged out`);

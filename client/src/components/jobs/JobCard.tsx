@@ -1,13 +1,28 @@
 "use client";
 
-import { Briefcase, MapPin } from "lucide-react";
-import { Button } from "../ui/button";
 import { useModalStore } from "@/store/modalStore";
 import { useSelectedJobStore } from "@/store/selectedJob";
+import { useUserStore } from "@/store/userStore";
+import { Briefcase, MapPin } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { Button } from "../ui/button";
 
 export default function JobCard({ job }: { job: Job }) {
+  const router = useRouter();
+  const user = useUserStore((state) => state.user);
   const setSelectedJob = useSelectedJobStore((state) => state.setSelectedJob);
   const setJobModalOpen = useModalStore((state) => state.setJobModalOpen);
+
+  const handleApplyClick = () => {
+    if (!user) {
+      toast.warning("Login to continue");
+      router.push("/login");
+      return;
+    }
+    setJobModalOpen(true);
+    setSelectedJob(job);
+  };
   return (
     <div
       className="bg-[#1A1A1A] py-4 px-6 rounded-lg flex lg:items-center justify-between
@@ -32,10 +47,7 @@ export default function JobCard({ job }: { job: Job }) {
         size="lg"
         variant="secondary"
         className="px-10 font-semibold"
-        onClick={() => {
-          setJobModalOpen(true);
-          setSelectedJob(job);
-        }}
+        onClick={handleApplyClick}
       >
         Apply
       </Button>

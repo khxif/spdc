@@ -2,7 +2,6 @@ import { compare } from "bcrypt";
 import { Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 import { User } from "../models/UserModel";
-import { cookieOptions } from "../utils/cookieOptions";
 import { createToken } from "../utils/createToken";
 import { hashPassword } from "../utils/hashPassword";
 
@@ -63,18 +62,6 @@ export const login = async (req: Request, res: Response) => {
     res.status(200).json(token);
   } catch (error) {
     console.log("Login: " + error);
-    res
-      .status(500)
-      .json({ error: (error as Error)?.message || "Internal server Error!" });
-  }
-};
-
-export const logout = async (req: Request, res: Response) => {
-  try {
-    res.clearCookie("user", cookieOptions);
-    res.json({ message: "Logout success" });
-  } catch (error) {
-    console.log("Logout: " + error);
     res
       .status(500)
       .json({ error: (error as Error)?.message || "Internal server Error!" });

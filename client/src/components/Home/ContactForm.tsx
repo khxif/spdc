@@ -13,8 +13,14 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
+import { useUserStore } from "@/store/userStore";
+import { toast } from "sonner";
+import { redirect, useRouter } from "next/navigation";
 
 export default function ContactForm() {
+  const router = useRouter();
+  const user = useUserStore((state) => state.user);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -26,6 +32,11 @@ export default function ContactForm() {
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      if (!user) {
+        toast.warning("Login to continue");
+        router.push("/login");
+        return;
+      }
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_URL}/api/v1/send-mail`,
         {
@@ -38,8 +49,13 @@ export default function ContactForm() {
       );
       const data = await res.json();
       console.log(data);
+
+      if (!res.ok) return toast.error(data?.error || "Something went wrong");
+
+      toast.success("Thanks for your response!");
     } catch (error) {
       console.log(error);
+      toast.error((error as Error).message || "Something went wrong");
     } finally {
       form.reset();
     }

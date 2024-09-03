@@ -11,8 +11,7 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
   const token = useTokenStore((state) => state.token);
 
   useEffect(() => {
-    if (!token) return router.push("/login");
-    console.log(token);
+    if (!token) return;
 
     fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/auth/verify-token`, {
       headers: {
@@ -20,16 +19,15 @@ export default function ProtectedRoute({ children }: { children: ReactNode }) {
       },
     })
       .then(async (res) => {
-        console.log(res);
+        // console.log(res);
 
         const data = await res.json();
-        console.log(data);
-        if (!res.ok) return router.push("/login");
+        // console.log(data);
+        if (!res.ok) return;
         setUser(data);
       })
       .catch((error) => {
         console.log(error);
-        router.push("/login");
       });
   }, [token, router]);
 
