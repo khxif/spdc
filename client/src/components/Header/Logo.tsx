@@ -11,7 +11,7 @@ interface LogoProps {
 export default function Logo({ href }: LogoProps) {
   return (
     <Link href={href}>
-      <h1 className={cn(leckerLiOne.className, "text-3xl")}>spdc</h1>
+      <h1 className={cn(leckerLiOne.className, "text-3xl")}>DevDopz</h1>
     </Link>
   );
 }
