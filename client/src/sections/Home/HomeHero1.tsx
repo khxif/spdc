@@ -12,7 +12,7 @@ export default function HomeHero1() {
        md:items-start md:justify-start text-center md:text-left py-6"
       >
         <h1 className="font-bold text-2xl md:text-4xl md:leading-10">
-          Welcome to space Power developer Community
+          Welcome to DevDopz
         </h1>
         <p className="text-sm">
           CodeCrafters: Crafting Tomorrow&apos;s Solutions Today

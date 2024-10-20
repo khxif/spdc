@@ -6,7 +6,7 @@ export default function Testimonials() {
       <div className="md:px-16 ">
         <div className="container flex flex-col items-start mx-auto lg:items-center">
           <p
-            className="relative flex items-start justify-start w-full text-lg font-bold tracking-wider text-purple-500 uppercase lg:justify-center lg:items-center"
+            className="relative flex items-start justify-start w-full text-lg font-bold tracking-wider text-primary-blue uppercase lg:justify-center lg:items-center"
             data-primary="purple-500"
           >
             Don&apos;t just take our word for it
@@ -38,8 +38,8 @@ export default function Testimonials() {
                   />
                 </div>
                 <div className="flex flex-col items-start justify-center">
-                  <h4 className="font-bold text-white">John Doe</h4>
-                  <p className="text-gray-300/80">CEO of Something</p>
+                  <h4 className="font-bold text-black">John Doe</h4>
+                  <p className="text-gray-800/80">CEO of Something</p>
                 </div>
               </div>
               <blockquote className="mt-8 text-lg text-gray-500">
@@ -57,8 +57,8 @@ export default function Testimonials() {
                   />
                 </div>
                 <div className="flex flex-col items-start justify-center">
-                  <h4 className="font-bold text-white">Jane Doe</h4>
-                  <p className="text-gray-300/80">CTO of Business</p>
+                  <h4 className="font-bold text-black">Jane Doe</h4>
+                  <p className="text-gray-800/80">CTO of Business</p>
                 </div>
               </div>
               <blockquote className="mt-8 text-lg text-gray-500">
@@ -75,8 +75,8 @@ export default function Testimonials() {
                   />
                 </div>
                 <div className="flex flex-col items-start justify-center">
-                  <h4 className="font-bold text-white">John Smith</h4>
-                  <p className="text-gray-300/80">Creator of Stuff</p>
+                  <h4 className="font-bold text-black">John Smith</h4>
+                  <p className="text-gray-800/80">Creator of Stuff</p>
                 </div>
               </div>
               <blockquote className="mt-8 text-lg text-gray-500">

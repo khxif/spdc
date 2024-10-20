@@ -25,13 +25,13 @@ export default function JobCard({ job }: { job: Job }) {
   };
   return (
     <div
-      className="bg-[#1A1A1A] py-4 px-6 rounded-lg flex lg:items-center justify-between
+      className="bg-slate-300 py-4 px-6 rounded-lg flex lg:items-center justify-between
      lg:space-x-16 flex-col lg:flex-row space-y-5 lg:space-y-0"
     >
       <div className="flex flex-col space-y-4">
         <h1 className="text-xl font-semibold">{job.title}</h1>
 
-        <p className="text-white/75">{job.description}</p>
+        <p className="">{job.description}</p>
         <span className="flex items-center justify-start space-x-5 capitalize font-medium">
           <span className="flex items-center space-x-1">
             <Briefcase className="size-4" />

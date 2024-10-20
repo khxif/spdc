@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       <body
-        className={cn(inter.className, "bg-black text-white h-screen w-full")}
+        className={cn(inter.className, "h-screen w-full")}
       >
         <Hydrations>
           <ProtectedRoute>

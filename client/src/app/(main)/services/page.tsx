@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <main className="max-w-7xl mx-auto my-10 px-2 sm:px-4 lg:px-0">
-      <section className="bg-[#1A1A1A] px-6 py-4">
+      <section className="bg-zinc-300 px-6 py-4">
         <h1 className="text-xl">Our Services</h1>
         <Separator className="my-2 bg-[#303030]" />
 
         <div className="px-2 md:px-8 py-8 space-y-12">
-          <p className="font-light text-sm md:text-base text-white/80 leading-7">
-            At <span className="font-semibold text-white">DevDopz</span>, we
+          <p className="font-light text-sm md:text-base leading-7">
+            At <span className="font-semibold ">DevDopz</span>, we
             specialize in creating dynamic and innovative solutions tailored to
             meet your digital needs. Whether you&apos;re looking to establish a
             powerful online presence, develop cutting-edge software, or create
@@ -25,7 +25,7 @@ export default function ServicesPage() {
 
           <div className="space-y-2">
             <h2 className="font-semibold text-xl">Website Development</h2>
-            <p className="font-light text-sm md:text-base leading-7 text-white/80">
+            <p className="font-light text-sm md:text-base leading-7">
               Elevate your brand with a stunning website designed to captivate
               your audience and drive results. From sleek portfolios to robust
               e-commerce platforms, we bring your vision to life with precision
@@ -35,7 +35,7 @@ export default function ServicesPage() {
 
           <div className="space-y-2">
             <h2 className="font-semibold text-xl">Software Development</h2>
-            <p className="font-light text-sm md:text-base leading-7 text-white/80">
+            <p className="font-light text-sm md:text-base leading-7">
               Harness the power of technology to streamline your operations and
               enhance productivity. Our custom software solutions are crafted to
               address your unique challenges, providing scalable and efficient
@@ -45,7 +45,7 @@ export default function ServicesPage() {
 
           <div className="space-y-2">
             <h2 className="font-semibold text-xl">Mobile Apps</h2>
-            <p className="font-light text-sm md:text-base leading-7 text-white/80">
+            <p className="font-light text-sm md:text-base leading-7">
               Reach your customers wherever they are with intuitive and
               feature-rich mobile applications. Whether for iOS or Android, we
               develop user-friendly apps that deliver seamless experiences and
@@ -55,7 +55,7 @@ export default function ServicesPage() {
 
           <div className="space-y-2">
             <h2 className="font-semibold text-xl">Web Apps</h2>
-            <p className="font-light text-sm md:text-base leading-7 text-white/80">
+            <p className="font-light text-sm md:text-base leading-7">
               Transform your business processes with dynamic web applications
               tailored to your specific requirements. From content management
               systems to customer portals, we empower your organization with
@@ -65,7 +65,7 @@ export default function ServicesPage() {
 
           <div className="space-y-2">
             <h2 className="font-semibold text-xl">Game Development</h2>
-            <p className="font-light text-sm md:text-base leading-7 text-white/80">
+            <p className="font-light text-sm md:text-base leading-7">
               Immerse your audience in captivating worlds and thrilling
               adventures with our expert game development services. From casual
               mobile games to immersive virtual reality experiences, we bring

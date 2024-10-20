@@ -8,14 +8,14 @@ import { usePathname } from "next/navigation";
 export default function NavLinks() {
   const pathname = usePathname();
   return (
-    <div className="hidden items-center space-x-8 text-[#BBBBBB] md:flex">
+    <div className="hidden items-center space-x-8 text-black md:flex">
       {links?.map((link) => (
         <Link
           href={link.href}
           key={link.id}
           className={cn(
-            pathname === link.href && "text-white",
-            "hover:text-white transition-all duration-200 ease-linear"
+            pathname === link.href && "text-primary-blue",
+            "hover:text- transition-all duration-200 ease-linear"
           )}
         >
           {link.label}
