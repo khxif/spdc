@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <main className="max-w-7xl mx-auto my-10 px-2 sm:px-4 lg:px-0">
-      <section className="bg-zinc-300 px-6 py-4">
+      <section className="bg-zinc-700/50 px-6 py-4">
         <h1 className="text-xl">Our Services</h1>
         <Separator className="my-2 bg-[#303030]" />
 

@@ -18,8 +18,8 @@ export default async function HomePage() {
       <HomeHero2 />
       <Features />
       <Products softwares={softwares} />
-      <FAQs />
-      <Testimonials />
+      {/* <FAQs /> */}
+      {/* <Testimonials /> */}
       <Contact />
     </main>
   );

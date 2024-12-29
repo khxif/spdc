@@ -82,7 +82,7 @@ export default function ContactForm() {
                           border-white/40 py-6 px-6 border-[#8B8B8B]"
                           {...field}
                         />
-                        <span className="absolute text-[#959595] left-2 px-2 -top-3 bg-white z-50 text-sm">
+                        <span className="absolute text-[#959595] bg-black left-2 px-2 -top-3  z-50 text-sm">
                           Name
                         </span>
                       </div>
@@ -106,7 +106,7 @@ export default function ContactForm() {
                            border-white/40 py-6 px-6 border-[#8B8B8B]"
                           {...field}
                         />
-                        <span className="absolute text-[#959595] left-2 px-2 -top-3 bg-white z-50 text-sm">
+                        <span className="absolute text-[#959595] bg-black left-2 px-2 -top-3  z-50 text-sm">
                           Email Address
                         </span>
                       </div>
@@ -132,7 +132,7 @@ export default function ContactForm() {
                           placeholder:font-light border-white/40 py-6 px-6 border-[#8B8B8B]"
                           {...field}
                         />
-                        <span className="absolute text-[#959595] left-2 px-2 -top-3 bg-white z-50 text-sm">
+                        <span className="absolute text-[#959595] bg-black left-2 px-2 -top-3  z-50 text-sm">
                           Message
                         </span>
                       </div>
@@ -144,8 +144,8 @@ export default function ContactForm() {
             </div>
           </div>
           <button
-            className="px-20 py-2.5 rounded-full bg-gradient-to-r to-primary-blue via-indigo-200 
-             from-[#fff] text-black max-w-fit font-semibold hover:brightness-75 mx-auto"
+            className="px-20 py-2.5 rounded-full bg-gradient-to-r from-[#7CFEDE] to-[#fff]
+             text-black max-w-fit font-semibold hover:brightness-75 mx-auto"
           >
             Submit
           </button>

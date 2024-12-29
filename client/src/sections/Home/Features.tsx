@@ -47,7 +47,7 @@ const features = [
     title: "Game Development",
     image: "/features/feature-1.webp",
     description:
-      "At DevDopz, we specialize in creating immersive gaming experiences across 3D, 2D, VR, and AR platforms. Our team excels in developing detailed 3D worlds, engaging 2D adventures, and cutting-edge VR and AR games that blend the digital and physical realms. We combine stunning visuals with seamless gameplay to captivate and entertain players",
+      "At SPDC, we specialize in creating immersive gaming experiences across 3D, 2D, VR, and AR platforms. Our team excels in developing detailed 3D worlds, engaging 2D adventures, and cutting-edge VR and AR games that blend the digital and physical realms. We combine stunning visuals with seamless gameplay to captivate and entertain players",
   },
   {
     id: 2,
@@ -61,7 +61,7 @@ const features = [
     title: "High-quality UI/UX Design",
     image: "/features/feature-3.webp",
     description:
-      "At DevDopz, we specialize in creating immersive gaming experiences across 3D, 2D, VR, and AR platforms. Our team excels in developing detailed 3D worlds, engaging 2D adventures, and cutting-edge VR and AR games that blend the digital and physical realms. We combine stunning visuals with seamless gameplay to captivate and entertain players",
+      "At SPDC, we specialize in creating immersive gaming experiences across 3D, 2D, VR, and AR platforms. Our team excels in developing detailed 3D worlds, engaging 2D adventures, and cutting-edge VR and AR games that blend the digital and physical realms. We combine stunning visuals with seamless gameplay to captivate and entertain players",
   },
   {
     id: 4,

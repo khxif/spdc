@@ -25,7 +25,7 @@ export default function JobCard({ job }: { job: Job }) {
   };
   return (
     <div
-      className="bg-slate-300 py-4 px-6 rounded-lg flex lg:items-center justify-between
+      className="bg-zinc-700/50 py-4 px-6 rounded-lg flex lg:items-center justify-between
      lg:space-x-16 flex-col lg:flex-row space-y-5 lg:space-y-0"
     >
       <div className="flex flex-col space-y-4">

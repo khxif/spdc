@@ -5,11 +5,11 @@ import { ReactNode } from "react";
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <main className="bg-black text-white min-h-full">
       <Header />
       {children}
       <AdminButton />
       <JobApplyModal />
-    </>
+    </main>
   );
 }

@@ -13,7 +13,7 @@ export default async function JobsPage() {
   const jobs: Job[] = await res.json();
   // console.log(jobs);
   return (
-    <main className="py-4 sm:py-6 lg:py-8 flex flex-col space-y-5 max-w-7xl px-4 lg:px-0 mx-auto pb-10">
+    <main className="py-4 sm:py-6 lg:py-8 flex flex-col space-y-5 max-w-7xl px-4 lg:px-0 mx-auto pb-10 h-full">
       {jobs &&
         jobs?.map((job) => (
           <div key={job._id}>

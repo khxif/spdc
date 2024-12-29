@@ -17,9 +17,9 @@ export default function CategoryTabs({
         <div key={ctgry}>
           <span
             className={cn(
-              `px-4 py-2 text-sm font-medium rounded-full bg-white text- hover:brightness-90 capitalize
-              cursor-pointer transition-all duration-200 ease-linear hover:bg-primary-blue hover:text-white`,
-              ctgry === category && "text-white bg-primary-blue"
+              `px-4 py-2 text-sm font-medium rounded-full bg-slate-500 text- hover:brightness-90 capitalize
+              cursor-pointer transition-all duration-200 ease-linear hover:bg-[#7CFEDE] hover:text-black`,
+              ctgry === category && "text-black bg-gradient-to-r from-[#7CFEDE] to-[#fff]"
             )}
             onClick={() => setCategory(ctgry as Category)}
           >

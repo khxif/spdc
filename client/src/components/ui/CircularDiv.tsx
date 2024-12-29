@@ -6,7 +6,7 @@ export default function CircularDiv({children}: {children: ReactNode}) {
       className="w-56 h-56 rounded-full flex items-center justify-center
       bg-gradient-to-b from-[#EB00FF] to-[#7CFEDE] p-[.15rem]"
     >
-      <div className="bg-white w-full h-full rounded-full flex items-center justify-center">
+      <div className="bg-black w-full h-full rounded-full flex items-center justify-center">
         {children}
       </div>
     </div>
